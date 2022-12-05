@@ -93,7 +93,7 @@ namespace AdventOfCode
             var puzzleInput = "    [D]    \r\n[N] [C]    \r\n[Z] [M] [P]\r\n 1   2   3 \r\n\r\nmove 1 from 2 to 1\r\nmove 3 from 1 to 3\r\nmove 2 from 2 to 1\r\nmove 1 from 1 to 2";
             var rps = new _5_Supply_Stacks(puzzleInput);
             var answer = rps.ProcessInputPartTwo();
-            Assert.AreEqual(4, answer);
+            Assert.Contains("MCD", new[] { answer });
         }
     }
 }

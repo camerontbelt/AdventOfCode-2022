@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AdventOfCode
+﻿namespace AdventOfCode
 {
     public class _5_Supply_Stacks
     {
@@ -83,9 +75,46 @@ namespace AdventOfCode
             return stacks;
         }
 
+        private List<Stack<string>> ProcessStacksPartTwo(List<Stack<string>> stacks, List<string> moves)
+        {
+            foreach (var move in moves)
+            {
+                var moveList = move
+                    .Replace("move","")
+                    .Replace("from", "")
+                    .Replace("to", "")
+                    .Split(' ',StringSplitOptions.RemoveEmptyEntries)
+                    .Select(x => Convert.ToInt32(x))
+                    .ToList();
+
+                var tempStack = new Stack<string>();
+                for (int i = 0; i < moveList[0]; i++)
+                {
+                    var a = stacks[moveList[1]-1].Pop();
+                    tempStack.Push(a);
+                }
+
+                while(tempStack.Count > 0)
+                {
+                    var a = tempStack.Pop();
+                    stacks[moveList[2] - 1].Push(a);
+                }
+            }
+            return stacks;
+        }
+
         public string ProcessInputPartTwo()
         {
-            throw new NotImplementedException();
+            var result = string.Empty;
+            var stacksString = _puzzleInput.Split("\r\n\r\n")[0];
+            var moves = _puzzleInput.Split("\r\n\r\n")[1].Split('\n').ToList();
+            var stacks = ParseStacks(stacksString);
+            stacks = ProcessStacksPartTwo(stacks, moves);
+            foreach (var stack in stacks)
+            {
+                result += stack.Peek();
+            }
+            return result.Trim();
         }
     }
 }
