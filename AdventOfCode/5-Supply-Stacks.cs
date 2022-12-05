@@ -40,21 +40,7 @@ namespace AdventOfCode
                 result.Add(stack);
             }
             var a = b[0].Replace("   ", "").Split(" ").ToList();
-            //var a = new Stack<string>();
-            //a.Push("[Z]");
-            //a.Push("[N]");
-
-            //var b = new Stack<string>();
-            //b.Push("[M]");
-            //b.Push("[C]");
-            //b.Push("[D]");
-
-            //var c = new Stack<string>();
-            //c.Push("[P]");
-
-            //result.Add(a);
-            //result.Add(b);
-            //result.Add(c);
+            
             return result;
         }
 
