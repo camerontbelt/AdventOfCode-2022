@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -27,21 +28,38 @@ namespace AdventOfCode
             {
                 result += stack.Peek();
             }
-            return result.Replace("[","").Replace("]","").Trim();
+            return result.Trim();
         }
 
         private List<Stack<string>> ParseStacks(string stacksString)
         {
             var result = new List<Stack<string>>();
-            var b = stacksString.Split("\r\n").ToList();
-            foreach (var row in b)
+            var lines = stacksString.Split("\r\n").ToList();
+            var lastLine = lines.Last();
+            
+            var count = Convert.ToInt32(stacksString.Split("\r\n").ToList().Last().Split(' ', StringSplitOptions.RemoveEmptyEntries).ToList().Last());
+            for (var i = 1; i <= count; i++)
             {
                 var stack = new Stack<string>();
-                result.Add(stack);
+                var index = lastLine.IndexOf(i.ToString(),0);
+                for (int j = 0; j < count; j++)
+                {
+                    var item = lines[j][index];
+                    if (char.IsAsciiLetter(item)) stack.Push(item.ToString());
+                }
+                result.Add(Reverse(stack));
             }
-            var a = b[0].Replace("   ", "").Split(" ").ToList();
-            
             return result;
+        }
+
+        private static Stack<string> Reverse(Stack<string> input)
+        {
+            Stack<string> temp = new Stack<string>();
+
+            while (input.Count != 0)
+                temp.Push(input.Pop());
+
+            return temp;
         }
 
         private List<Stack<string>> ProcessStacks(List<Stack<string>> stacks, List<string> moves)
