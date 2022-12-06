@@ -95,5 +95,29 @@ namespace AdventOfCode
             var answer = rps.ProcessInputPartTwo();
             Assert.Contains("MCD", new[] { answer });
         }
+
+        [Test]
+        [TestCase("bvwbjplbgvbhsrlpgdmjqwftvncz", 5)]
+        [TestCase("nppdvjthqldpwncqszvftbrmjlhg",6)]
+        [TestCase("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg", 10)]
+        [TestCase("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw", 11)]
+        public void _6_Test(string puzzleInput, int expected)
+        {
+            var rps = new _6_Tuning_Trouble(puzzleInput);
+            var answer = rps.ProcessInput();
+            Assert.AreEqual(expected, answer);
+        }
+
+        [Test]
+        [TestCase("bvwbjplbgvbhsrlpgdmjqwftvncz", 23)]
+        [TestCase("nppdvjthqldpwncqszvftbrmjlhg", 23)]
+        [TestCase("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg", 29)]
+        [TestCase("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw", 26)]
+        public void _6_part_2_Test(string puzzleInput, int expected)
+        {
+            var rps = new _6_Tuning_Trouble(puzzleInput);
+            var answer = rps.ProcessInputPartTwo();
+            Assert.AreEqual(expected, answer);
+        }
     }
 }

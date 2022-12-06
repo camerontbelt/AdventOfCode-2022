@@ -2,7 +2,7 @@
 
 using AdventOfCode;
 
-var puzzleInput = File.ReadAllText(@"c:\temp\day-5-input.txt");
-var advent = new _5_Supply_Stacks(puzzleInput);
+var puzzleInput = File.ReadAllText(@"c:\temp\day-6-input.txt");
+var advent = new _6_Tuning_Trouble(puzzleInput);
 var answer = advent.ProcessInputPartTwo();
 Console.WriteLine(answer);
